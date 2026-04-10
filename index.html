@@ -3,95 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablero de Control Interno - IPE</title>
+    <title>Tablero SICI - IPE 2026</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #ebedf0; margin: 0; padding: 20px; }
-        header { background: #003366; color: white; padding: 15px 25px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1 { margin: 0; font-size: 1.5rem; }
+        :root {
+            --bg-color: #0d1117;
+            --column-bg: #161b22;
+            --card-bg: #21262d;
+            --text-main: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --border: #30363d;
+            --success: #238636;
+        }
+
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; }
         
-        /* Contenedor de columnas */
-        .kanban-board { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; align-items: flex-start; }
+        .header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); margin: 0; }
+        .header p { color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.9rem; }
+
+        .kanban-container { display: flex; gap: 16px; overflow-x: auto; align-items: flex-start; padding-bottom: 20px; }
         
-        /* Columnas */
-        .column { background-color: #d1d4d8; border-radius: 10px; min-width: 300px; width: 300px; padding: 10px; display: flex; flex-direction: column; max-height: 90vh; }
-        .column h2 { font-size: 1rem; color: #333; padding: 5px 10px; margin-top: 0; text-transform: uppercase; border-bottom: 2px solid #003366; }
+        /* Estilo de Columnas */
+        .column { background: var(--column-bg); border: 1px solid var(--border); border-radius: 6px; min-width: 300px; width: 300px; display: flex; flex-direction: column; max-height: 85vh; }
+        .column-header { padding: 12px; font-weight: 600; font-size: 0.85rem; color: var(--text-main); border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; }
+        .column-count { background: #30363d; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; }
+
+        /* Estilo de Tarjetas */
+        .cards-container { padding: 8px; overflow-y: auto; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px; margin-bottom: 8px; box-shadow: 0 1px 0 rgba(0,0,0,0.1); }
+        .card:hover { border-color: var(--text-secondary); }
+        .card-id { color: var(--text-secondary); font-size: 0.7rem; font-family: monospace; display: block; margin-bottom: 4px; }
+        .card-title { font-size: 0.9rem; font-weight: 500; line-height: 1.4; }
         
-        /* Tarjetas */
-        .card { background: white; border-radius: 6px; padding: 12px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); border-left: 4px solid #003366; }
-        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: 0.3s; }
-        .card-title { font-weight: bold; margin-bottom: 8px; color: #222; display: block; }
-        
-        /* Enlaces y Adjuntos */
-        .attachment { display: block; margin-top: 8px; padding: 6px; background: #f1f8ff; border: 1px dashed #0366d6; border-radius: 4px; color: #0366d6; text-decoration: none; font-size: 0.85rem; text-align: center; }
-        .attachment:hover { background: #def; }
-        
-        .footer-notes { margin-top: 30px; background: white; padding: 20px; border-radius: 10px; border: 1px solid #ccc; }
-        hr { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
+        /* Detalles y Adjuntos */
+        .card-desc { font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; font-style: italic; }
+        .attachment-btn { display: flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 10px; background: #23863620; border: 1px solid var(--success); border-radius: 4px; color: #3fb950; text-decoration: none; font-size: 0.75rem; font-weight: 600; }
+        .attachment-btn:hover { background: var(--success); color: white; }
+
+        .tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-top: 8px; }
+        .tag-done { background: #238636; color: white; }
+        .tag-process { background: #9e6a03; color: white; }
+
+        /* Scrollbar personalizado tipo VS Code */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>COCODI IPE 2026 - Seguimiento SICI</h1>
-</header>
-
-<div class="kanban-board">
-    <div class="column">
-        <h2>1. PENDIENTES SICI</h2>
-        <div class="card"><span class="card-title">SICI-CE-01 “Ética”</span></div>
-        <div class="card"><span class="card-title">SICI-PP-02 “Perfil de Puesto”</span></div>
-        <div class="card"><span class="card-title">SICI-CP-03 “Competencia”</span></div>
-        <div class="card"><span class="card-title">SICI-IR-04 “Riesgos”</span></div>
-        <div class="card"><span class="card-title">SICI-AR-05 “Análisis”</span></div>
-        <div class="card"><span class="card-title">SICI-MGR-06 “Matriz Gestión”</span></div>
-        <div class="card"><span class="card-title">SICI-CR-07 “Catálogo”</span></div>
-        <div class="card"><span class="card-title">SICI-COM-10 “Comunicación”</span></div>
-        <div class="card"><span class="card-title">SICI-AG-11 “Análisis Ente”</span></div>
-    </div>
-
-    <div class="column">
-        <h2>2. EN PROCESO</h2>
-        <div class="card">
-            <span class="card-title">SICI-SCO-14 “Actas”</span>
-            <p style="font-size: 0.8rem; color: #666;">Estatus: En proceso de firmas.</p>
-        </div>
-        <div class="card"><span class="card-title">SICI-IA-15 “Informe Anual”</span></div>
-    </div>
-
-    <div class="column">
-        <h2>3. COMPLETADO</h2>
-        <div class="card">
-            <span class="card-title">ACUERDO 04: SICI-PTCI-08</span>
-            <a href="./2026-03-23_COCODI_8_SICI-PTCI-08.xlsx" class="attachment">📎 Abrir Programa Trabajo</a>
-        </div>
-        <div class="card">
-            <span class="card-title">ACUERDO 03: SICI-C-09-01</span>
-            <a href="./2026-03-23_COCODI_9_SICI-C-09-01.xlsx" class="attachment">📎 Abrir Cronograma</a>
-        </div>
-        <div class="card">
-            <span class="card-title">ACUERDO 07: Código Conducta</span>
-            <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" class="attachment">📎 Ver en Gaceta</a>
-        </div>
-    </div>
-
-    <div class="column">
-        <h2>4. SESIONES Y CALENDARIO</h2>
-        <div class="card">
-            <span class="card-title">1ra Ordinaria (24/Mar)</span>
-            <hr>
-            <a href="./2026-03-23_COCODI_8_SICI-PTCI-08.xlsx" style="font-size: 0.8rem; color: #0366d6;">Doc. PTCI-08</a><br>
-            <a href="./2026-04-09_COCODI_InformeAnual Etica2025 IPE.docx" style="font-size: 0.8rem; color: #0366d6;">Doc. Informe Ética</a>
-        </div>
-        <div class="card">
-            <span class="card-title">Próximas Sesiones</span>
-            <p style="font-size: 0.8rem;">2da Ordinaria: 24 de Junio<br>3ra Ordinaria: 23 de Septiembre</p>
-        </div>
-    </div>
+<div class="header">
+    <h1>COCODI IPE - Tablero SICI 2026</h1>
+    <p>Instituto de Pensiones del Estado | Control Interno</p>
 </div>
 
-<div class="footer-notes">
-    <h3>Notas Adicionales</h3>
-    <p>Este tablero es para uso interno del Instituto de Pensiones del Estado (IPE). Los documentos adjuntos son las versiones finales aprobadas en sesión.</p>
+<div class="kanban-container">
+
+    <div class="column">
+        <div class="column-header">Pendientes SICI <span class="column-count">12</span></div>
+        <div class="cards-container">
+            <div class="card"><span class="card-id">#esyeapga</span><span class="card-title">SICI-CE-01 “Ética”</span></div>
+            <div class="card"><span class="card-id">#87e1su6v</span><span class="card-title">SICI-PP-02 “Perfil de Puesto”</span></div>
+            <div class="card"><span class="card-id">#xwmxcawa</span><span class="card-title">SICI-CP-03 “Competencia del Personal”</span></div>
+            <div class="card"><span class="card-id">#0jcj293w</span><span class="card-title">SICI-IR-04 “Identificación de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#9e62prd7</span><span class="card-title">SICI-AR-05 “Análisis de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#iz2u8cor</span><span class="card-title">SICI-MGR-06 “Matriz de Gestión”</span></div>
+            <div class="card"><span class="card-id">#a3tx4iii</span><span class="card-title">SICI-CR-07 “Catálogo de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#8hy93y0n</span><span class="card-title">SICI-COM-10 “Matriz de Comunicación”</span></div>
+            <div class="card"><span class="card-id">#jal85khw</span><span class="card-title">SICI-AG-11 “Análisis del Ente”</span></div>
+            <div class="card"><span class="card-id">#ml597rf3</span><span class="card-title">SICI-ACP-12 “Componentes y Principios”</span></div>
+            <div class="card"><span class="card-id">#9oqw2446</span><span class="card-title">SICI-MC-16 “Mejora Continua”</span></div>
+            <div class="card"><span class="card-id">#5f1uw5zd</span><span class="card-title">SICI-IA-15 “Informe Anual”</span></div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">EN PROCESO <span class="column-count">1</span></div>
+        <div class="cards-container">
+            <div class="card">
+                <span class="card-id">#vh37dmf4</span>
+                <span class="card-title">SICI-SCO-14 “Actas de Sesiones”</span>
+                <div class="card-desc">Estatus: En proceso de firmas.</div>
+                <span class="tag tag-process">PENDIENTE FIRMAS</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">COMPLETADO <span class="column-count">5</span></div>
+        <div class="cards-container">
+            <div class="card">
+                <span class="card-id">#1oxwsx6i</span>
+                <span class="card-title">ACUERDO 04: Programa PTCI-08</span>
+                <a href="./2026-03-23_COCODI_8_SICI-PTCI-08.xlsx" class="attachment-btn">📎 PTCI-08 (Excel)</a>
+            </div>
+            <div class="card">
+                <span class="card-id">#1oxwsx6j</span>
+                <span class="card-title">ACUERDO 03: Cronograma C-09-01</span>
+                <a href="./2026-03-23_COCODI_9_SICI-C-09-01.xlsx" class="attachment-btn">📎 C-09-01 (Excel)</a>
+            </div>
+            <div class="card">
+                <span class="card-id">#8nj8z72e</span>
+                <span class="card-title">ACUERDO 05: Informe Ética 2025</span>
+                <a href="./2026-04-09_COCODI_InformeAnual Etica2025 IPE.docx" class="attachment-btn">📎 Informe Ética (Word)</a>
+            </div>
+            <div class="card">
+                <span class="card-id">#a0wvqsr5</span>
+                <span class="card-title">ACUERDO 07: Código de Conducta</span>
+                <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" class="attachment-btn">📎 Gaceta Oficial (PDF)</a>
+            </div>
+            <div class="card">
+                <span class="card-id">#l1tytm70</span>
+                <span class="card-title">ACUERDO 06: Plan Enlace Ética</span>
+                <span class="tag tag-done">COMPLETADO</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">SESIONES Y CALENDARIO <span class="column-count">4</span></div>
+        <div class="cards-container">
+            <div class="card">
+                <span class="card-id">#oh5e9mlk</span>
+                <span class="card-title">1ra Ordinaria (24/Mar)</span>
+                <div class="card-desc">Acta y Anexos concluidos.</div>
+            </div>
+            <div class="card">
+                <span class="card-id">#oh5e9ml2</span>
+                <span class="card-title">2da Ordinaria: 24 de Junio</span>
+            </div>
+            <div class="card">
+                <span class="card-id">#52kjwjxs</span>
+                <span class="card-title">3ra Ordinaria: 23 de Sep</span>
+            </div>
+            <div class="card">
+                <span class="card-id">#l5cho724</span>
+                <span class="card-title">4ta Ordinaria: 11 de Nov</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">REUNIONES PTCI <span class="column-count">2</span></div>
+        <div class="cards-container">
+            <div class="card">
+                <span class="card-id">#ms7ayasp</span>
+                <span class="card-title">Reunión Actualización Código Conducta</span>
+            </div>
+            <div class="card">
+                <span class="card-id">#o56wkynv</span>
+                <span class="card-title">Capacitación Ética y Conducta</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 </body>
