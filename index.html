@@ -6,14 +6,9 @@
     <title>Tablero SICI IPE 2026</title>
     <style>
         :root {
-            /* Fondo Base Oscuro */
             --bg-base: #0d1117; 
-            
-            /* Fondos de Columnas y Tarjetas */
             --bg-column: #161b22;
             --bg-card: #21262d;
-            
-            /* Colores Institucionales Veracruz */
             --color-guinda: #7A1737;
             --color-dorado: #B28854;
             --color-gris-claro: #c9d1d9;
@@ -31,7 +26,6 @@
             line-height: 1.4;
         }
 
-        /* HEADER INTEGRADO AL FONDO OSCURO */
         .header { 
             border-bottom: 3px solid var(--color-guinda); 
             padding: 20px;
@@ -54,7 +48,6 @@
             margin-top: 5px;
         }
 
-        /* CONTENEDOR KANBAN */
         .kanban-container { 
             display: flex; 
             gap: 15px; 
@@ -63,7 +56,6 @@
             padding: 10px; 
         }
         
-        /* COLUMNAS */
         .column { 
             background: var(--bg-column); 
             border: 1px solid var(--color-border); 
@@ -88,7 +80,6 @@
             text-align: center; 
         }
         
-        /* TARJETAS OSCURAS */
         .cards-container { padding: 12px; overflow-y: auto; }
         .card { 
             background: var(--bg-card); 
@@ -122,7 +113,6 @@
         }
         .card-title-gold { color: var(--color-dorado); }
         
-        /* BOTONES DE ADJUNTOS */
         .attachment-btn { 
             display: flex; 
             align-items: center; 
@@ -144,7 +134,6 @@
             box-shadow: 0 0 10px rgba(122, 23, 55, 0.5); 
         }
 
-        /* ETIQUETAS */
         .tag { 
             font-size: 0.6rem; 
             padding: 3px 8px; 
@@ -157,10 +146,8 @@
         .tag-process { background: var(--color-dorado); color: #000; }
         .tag-done { background: #444; color: #fff; }
 
-        /* SCROLLBAR MODERNA */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--color-gris-muted); }
     </style>
 </head>
 <body>
@@ -196,8 +183,8 @@
             <div class="card">
                 <span class="card-id">#sco14</span>
                 <span class="card-title">SICI-SCO-14 “Acta de sesiones del COCODI”</span>
-                <span class="tag tag-process">En proceso de revisión por integrantes del COCODI-IPE</span>
-                <a href="./2026-04-08_COCODI_Acta_COCODI_20260408_1227.docx" class="attachment-btn">📎 Proyecto de Acta (Reciente)</a>
+                <span class="tag tag-process">En proceso de firmas</span>
+                <a href="./2026-04-08_COCODI_Acta_COCODI_20260408_1227.docx" target="_blank" class="attachment-btn">📎 Proyecto de Acta (Reciente)</a>
             </div>
         </div>
     </div>
@@ -212,28 +199,28 @@
             </div>
             <div class="card">
                 <span class="card-id">#c0901</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-03: Aprobación del Cronograma de Actividades “SICI-C-09-01”</span>
-                <a href="./2026-03-23_COCODI_9_SICI-C-09-01%20Cronograma%20de%20Actividades-General-2026.xlsx" class="attachment-btn">📎 Abrir Cronograma (Excel)</a>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-03: SICI-C-09-01 “Cronograma de Actividades-General”</span>
+                <a href="./2026-03-23_COCODI_9_SICI-C-09-01%20Cronograma%20de%20Actividades-General-2026.xlsx" target="_blank" class="attachment-btn">📎 Abrir Cronograma (Excel)</a>
             </div>
             <div class="card">
                 <span class="card-id">#ptci08</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-04: Aprobación del Programa de Trabajo de Control Interno “SICI-PTCI-08”</span>
-                <a href="./2026-03-23_COCODI_8_SICI-PTCI-08%20Programa%20de%20Trabajo%20de%20Control%20Interno%202026.xlsx" class="attachment-btn">📎 Abrir Programa (Excel)</a>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-04: SICI-PTCI-08 “Programa de Trabajo de Control Interno”</span>
+                <a href="./2026-03-23_COCODI_8_SICI-PTCI-08%20Programa%20de%20Trabajo%20de%20Control%20Interno%202026.xlsx" target="_blank" class="attachment-btn">📎 Abrir Programa (Excel)</a>
             </div>
             <div class="card">
                 <span class="card-id">#ac-05</span>
                 <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-05: Presentación del Informe Anual 2025 en Materia de Ética</span>
-                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe Final</a>
+                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" target="_blank" class="attachment-btn">📎 Abrir Informe Final</a>
             </div>
             <div class="card">
                 <span class="card-id">#ac-06</span>
                 <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-06: Presentación del Programa Anual de Trabajo en Materia de Ética</span>
-                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe Final</a>
+                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" target="_blank" class="attachment-btn">📎 Abrir Informe Final</a>
             </div>
             <div class="card">
                 <span class="card-id">#ac-07</span>
                 <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-07: Informe de Actualización del Código de Conducta</span>
-                <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" class="attachment-btn">📎 Ver en Gaceta Oficial</a>
+                <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" target="_blank" class="attachment-btn">📎 Ver en Gaceta Oficial</a>
             </div>
         </div>
     </div>
@@ -257,8 +244,8 @@
             <div class="card">
                 <span class="card-id">#1ra-ord</span>
                 <span class="card-title card-title-gold">PRIMERA SESIÓN ORDINARIA (24/Mar/2026)</span>
-                <a href="./2026-04-06_COCODI_GUION%20PRIMERA%20SESI%C3%93N%20ORDINARIA%20COCODI%202026.docx" class="attachment-btn">📎 Guion de Sesión</a>
-                <a href="./2026-04-08_COCODI_MEMO%20PROYECTO%20DE%20ACTA%20PRIMERA%20SESI%C3%93N%202026.docx" class="attachment-btn">📎 Memo Proyecto Acta</a>
+                <a href="./2026-04-06_COCODI_GUION%20PRIMERA%20SESI%C3%93N%20ORDINARIA%20COCODI%202026.docx" target="_blank" class="attachment-btn">📎 Guion de Sesión</a>
+                <a href="./2026-04-08_COCODI_MEMO%20PROYECTO%20DE%20ACTA%20PRIMERA%20SESI%C3%93N%202026.docx" target="_blank" class="attachment-btn">📎 Memo Proyecto Acta</a>
             </div>
         </div>
     </div>
@@ -279,7 +266,7 @@
             <div class="card">
                 <span class="card-id">#reunion-cod</span>
                 <span class="card-title">Reunion de trabajo: Actualización Código de Conducta</span>
-                <a href="./2026-03-10_COCODI_C%C3%93DIGO%20DE%20CONDUCTA%20IPE%20PARA%20GACETA.docx" class="attachment-btn">📎 Proyecto Código Word</a>
+                <a href="./2026-03-10_COCODI_C%C3%93DIGO%20DE%20CONDUCTA%20IPE%20PARA%20GACETA.docx" target="_blank" class="attachment-btn">📎 Proyecto Código Word</a>
             </div>
             <div class="card"><span class="card-title">Capacitación Ética y Conducta</span></div>
         </div>
