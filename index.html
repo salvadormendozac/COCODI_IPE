@@ -6,10 +6,10 @@
     <title>Tablero SICI IPE 2026</title>
     <style>
         :root {
-            /* Fondo Base Gris Atenuado - Domina la pantalla */
-            --bg-base: #f0f2f5; 
+            /* Fondo Base Oscuro */
+            --bg-base: #0d1117; 
             
-            /* Fondos Oscuros - Reservados para resaltar la información importante */
+            /* Fondos de Columnas y Tarjetas */
             --bg-column: #161b22;
             --bg-card: #21262d;
             
@@ -19,19 +19,19 @@
             --color-gris-claro: #c9d1d9;
             --color-gris-muted: #8b949e;
             --color-border: #30363d;
-            --color-texto-oscuro: #333333;
+            --color-texto-blanco: #ffffff;
         }
 
         body { 
             font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             background: var(--bg-base); 
-            color: var(--color-texto-oscuro); 
+            color: var(--color-gris-claro); 
             margin: 0; 
             padding: 20px; 
             line-height: 1.4;
         }
 
-        /* HEADER INTEGRADO AL FONDO GRIS */
+        /* HEADER INTEGRADO AL FONDO OSCURO */
         .header { 
             border-bottom: 3px solid var(--color-guinda); 
             padding: 20px;
@@ -42,12 +42,12 @@
         .header h1 { 
             margin: 0; 
             font-size: 1.65rem; 
-            color: var(--color-texto-oscuro); 
+            color: var(--color-texto-blanco); 
             text-transform: uppercase; 
             letter-spacing: 1px; 
         }
         .header span { 
-            color: var(--color-guinda); 
+            color: var(--color-dorado); 
             font-size: 0.9rem; 
             font-weight: 700; 
             display: block;
@@ -63,17 +63,17 @@
             padding: 10px; 
         }
         
-        /* COLUMNAS OSCURAS PARA RESALTAR CONTENIDO */
+        /* COLUMNAS */
         .column { 
             background: var(--bg-column); 
-            border: 1px solid rgba(0,0,0,0.1); 
+            border: 1px solid var(--color-border); 
             border-radius: 8px; 
             min-width: 320px; 
             width: 320px; 
             display: flex; 
             flex-direction: column; 
             max-height: 85vh; 
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); 
             flex-shrink: 0; 
         }
         .column-header { 
@@ -103,7 +103,7 @@
             border-color: var(--color-dorado); 
             border-left-color: var(--color-dorado); 
             transform: translateY(-4px); 
-            box-shadow: 0 12px 20px rgba(0,0,0,0.4); 
+            box-shadow: 0 12px 20px rgba(0,0,0,0.6); 
         }
         .card-id { 
             color: var(--color-gris-muted); 
@@ -129,7 +129,7 @@
             gap: 8px; 
             margin-top: 10px; 
             padding: 8px 12px; 
-            background: rgba(122, 23, 55, 0.2); 
+            background: rgba(122, 23, 55, 0.3); 
             border: 1px solid var(--color-guinda); 
             border-radius: 4px; 
             color: #ffffff; 
@@ -159,8 +159,8 @@
 
         /* SCROLLBAR MODERNA */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #bbb; }
+        ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-gris-muted); }
     </style>
 </head>
 <body>
@@ -264,7 +264,7 @@
     </div>
 
     <div class="column">
-        <div class="column-header">CALENDARIO 2026</div>
+        <div class="column-header">CALENDARIO SESIONES 2026</div>
         <div class="cards-container">
             <div class="card"><span class="card-title card-title-gold">1ra Ordinaria: 24 de Marzo</span></div>
             <div class="card"><span class="card-title card-title-gold">2da Ordinaria: 24 de Junio</span></div>
@@ -277,7 +277,8 @@
         <div class="column-header">REUNIONES PTCI</div>
         <div class="cards-container">
             <div class="card">
-                <span class="card-title">Actualización Código de Conducta</span>
+                <span class="card-id">#reunion-cod</span>
+                <span class="card-title">Reunion de trabajo: Actualización Código de Conducta</span>
                 <a href="./2026-03-10_COCODI_C%C3%93DIGO%20DE%20CONDUCTA%20IPE%20PARA%20GACETA.docx" class="attachment-btn">📎 Proyecto Código Word</a>
             </div>
             <div class="card"><span class="card-title">Capacitación Ética y Conducta</span></div>
