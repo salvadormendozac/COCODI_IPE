@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablero COCODI IPE 2026</title>
+    <title>Tablero SICI IPE 2026</title>
     <style>
         :root {
             --bg-base: #0d1117;
@@ -11,40 +11,53 @@
             --bg-card: #21262d;
             --color-guinda: #7A1737;
             --color-dorado: #B28854;
-            --color-gris-apoyo: #696968;
+            --color-gris: #696968;
             --text-main: #c9d1d9;
             --text-secondary: #8b949e;
-            --text-on-guinda: #ffffff;
-            --border-sutil: #30363d;
+            --border: #30363d;
         }
 
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: var(--bg-base); color: var(--text-main); margin: 0; padding: 20px; }
-        .header { border-bottom: 2px solid var(--color-guinda); padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
-        .header h1 { font-size: 1.8rem; color: var(--text-on-guinda); margin: 0; }
-        .header p { color: var(--color-dorado); margin: 8px 0 0 0; font-size: 1rem; }
+        body { 
+            font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg-base); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 20px; 
+            line-height: 1.4;
+        }
 
-        .kanban-container { display: flex; gap: 16px; overflow-x: auto; align-items: flex-start; padding-bottom: 20px; }
-        .column { background: var(--bg-column); border: 1px solid var(--border-sutil); border-radius: 8px; min-width: 320px; width: 320px; display: flex; flex-direction: column; max-height: 85vh; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        .column-header { padding: 14px; font-weight: 700; font-size: 0.9rem; color: var(--text-on-guinda); background-color: var(--color-guinda); border-radius: 8px 8px 0 0; text-transform: uppercase; display: flex; justify-content: space-between; }
+        .header { border-bottom: 2px solid var(--color-guinda); padding-bottom: 15px; margin-bottom: 25px; text-align: center; }
+        .header h1 { margin: 0; font-size: 1.6rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .header span { color: var(--color-dorado); font-size: 0.9rem; font-weight: 600; }
+
+        .kanban-container { display: flex; gap: 15px; overflow-x: auto; align-items: flex-start; padding-bottom: 30px; }
+        
+        .column { background: var(--bg-column); border: 1px solid var(--border); border-radius: 8px; min-width: 320px; width: 320px; display: flex; flex-direction: column; max-height: 85vh; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .column-header { padding: 12px; font-weight: bold; font-size: 0.8rem; color: #fff; background: var(--color-guinda); border-radius: 8px 8px 0 0; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
         
         .cards-container { padding: 12px; overflow-y: auto; }
-        .card { background: var(--bg-card); border: 1px solid var(--border-sutil); border-radius: 6px; padding: 16px; margin-bottom: 12px; border-left: 5px solid transparent; transition: 0.2s; }
-        .card:hover { border-color: var(--color-dorado); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
-        .card-id { color: var(--text-secondary); font-size: 0.75rem; font-family: monospace; display: block; margin-bottom: 6px; }
-        .card-title { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
-        .card-title-highlight { color: var(--color-dorado); }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px; margin-bottom: 12px; transition: 0.2s; border-left: 4px solid transparent; }
+        .card:hover { border-color: var(--color-dorado); border-left-color: var(--color-dorado); transform: translateX(5px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .card-id { color: var(--text-secondary); font-size: 0.7rem; font-family: ui-monospace, monospace; display: block; margin-bottom: 6px; opacity: 0.7; }
+        .card-title { font-size: 0.85rem; font-weight: 600; line-height: 1.4; display: block; color: var(--text-main); }
+        .card-title-gold { color: var(--color-dorado); }
+        
+        .attachment-btn { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 12px; background: rgba(122, 23, 55, 0.15); border: 1px solid var(--color-guinda); border-radius: 4px; color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 600; justify-content: center; transition: 0.2s; }
+        .attachment-btn:hover { background: var(--color-guinda); box-shadow: 0 0 10px rgba(122, 23, 55, 0.5); }
 
-        .attachment-btn { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; padding: 10px; background-color: var(--color-guinda); border-radius: 6px; color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
-        .attachment-btn:hover { background-color: #9c1d46; }
+        .tag { font-size: 0.6rem; padding: 3px 8px; border-radius: 4px; font-weight: bold; margin-top: 10px; display: inline-block; text-transform: uppercase; }
+        .tag-process { background: var(--color-dorado); color: #000; }
+        .tag-done { background: var(--color-gris); color: #fff; }
 
-        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-top: 10px; text-transform: uppercase; background-color: var(--color-dorado); color: black; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <div class="header">
     <h1>COCODI IPE - Tablero SICI 2026</h1>
-    <p>Instituto de Pensiones del Estado | Veracruz</p>
+    <span>MANUAL DE IDENTIDAD GRÁFICA VERACRUZ 2024 - 2030</span>
 </div>
 
 <div class="kanban-container">
@@ -52,11 +65,18 @@
     <div class="column">
         <div class="column-header">Pendientes SICI</div>
         <div class="cards-container">
-            <div class="card"><span class="card-id">#esyeapga</span><span class="card-title card-title-highlight">SICI-CE-01 “Ética”</span></div>
-            <div class="card"><span class="card-id">#87e1su6v</span><span class="card-title">SICI-PP-02 “Perfil de Puesto”</span></div>
-            <div class="card"><span class="card-id">#xwmxcawa</span><span class="card-title">SICI-CP-03 “Competencia del Personal”</span></div>
-            <div class="card"><span class="card-id">#0jcj293w</span><span class="card-title">SICI-IR-04 “Identificación de Riesgos”</span></div>
-            <div class="card"><span class="card-id">#9e62prd7</span><span class="card-title">SICI-AR-05 “Análisis de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#ce01</span><span class="card-title card-title-gold">SICI-CE-01 “Cuestionario de percepción en materia de Ética”</span></div>
+            <div class="card"><span class="card-id">#pp02</span><span class="card-title card-title-gold">SICI-PP-02 “Perfil de Puesto”</span></div>
+            <div class="card"><span class="card-id">#cp03</span><span class="card-title card-title-gold">SICI-CP-03 “Competencia del Personal”</span></div>
+            <div class="card"><span class="card-id">#ir04</span><span class="card-title card-title-gold">SICI-IR-04 “Identificación de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#ar05</span><span class="card-title card-title-gold">SICI-AR-05 “Análisis de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#mgr06</span><span class="card-title card-title-gold">SICI-MGR-06 “Matriz de Gestión de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#cr07</span><span class="card-title card-title-gold">SICI-CR-07 “Catálogo de Riesgos”</span></div>
+            <div class="card"><span class="card-id">#com10</span><span class="card-title card-title-gold">SICI-COM-10 “Matriz de Comunicación”</span></div>
+            <div class="card"><span class="card-id">#ag11</span><span class="card-title card-title-gold">SICI-AG-11 “Análisis de General del estado que guarda el Ente”</span></div>
+            <div class="card"><span class="card-id">#acp12</span><span class="card-title card-title-gold">SICI-ACP-12 “Análisis de Componentes y Principios en el Ente”</span></div>
+            <div class="card"><span class="card-id">#ia15</span><span class="card-title card-title-gold">SICI-IA-15 “Informe Anual del SICI”</span></div>
+            <div class="card"><span class="card-id">#mc16</span><span class="card-title card-title-gold">SICI-MC-16 “Mejora Continua del Ente”</span></div>
         </div>
     </div>
 
@@ -64,53 +84,103 @@
         <div class="column-header">EN PROCESO</div>
         <div class="cards-container">
             <div class="card">
-                <span class="card-id">#vh37dmf4</span>
-                <span class="card-title">SICI-SCO-14 “Actas de Sesiones”</span>
-                <span class="tag">Pendiente Firmas</span>
-                <a href="./2026-04-08_COCODI_Acta_COCODI_20260408_1227.docx" class="attachment-btn">📎 Proyecto de Acta</a>
-            </div>
-        </div>
+                <span class="card-id">#sco14</span>
+                <span class="card-title">SICI-SCO-14 “Acta de sesiones del COCODI”</span>
+                <span class="tag tag-process">Estatus: En proceso de firmas</span>
+                <a href="./2026-04-08_COCODI_Acta_COCODI_20260408_1227.docx" class="attachment-btn">📎 Proyecto de Acta (Reciente)</a>
+           
     </div>
 
     <div class="column">
         <div class="column-header">COMPLETADO</div>
         <div class="cards-container">
             <div class="card">
-                <span class="card-id">#1oxwsx6i</span>
-                <span class="card-title card-title-highlight">PTCI-08: Programa de Trabajo</span>
-                <a href="./2026-03-23_COCODI_8_SICI-PTCI-08%20Programa%20de%20Trabajo%20de%20Control%20Interno%202026.xlsx" class="attachment-btn">📎 Abrir Excel PTCI-08</a>
+                <span class="card-id">#ico13</span>
+                <span class="card-title">SICI-ICO-13 “Acta de instalación del COCODI”</span>
+                <span class="tag tag-done">Concluido</span>
             </div>
-            
             <div class="card">
-                <span class="card-id">#1oxwsx6j</span>
-                <span class="card-title card-title-highlight">C-09-01: Cronograma General</span>
-                <a href="./2026-03-23_COCODI_9_SICI-C-09-01%20Cronograma%20de%20Actividades-General-2026.xlsx" class="attachment-btn">📎 Abrir Excel C-09-01</a>
+                <span class="card-id">#c0901</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-03: Aprobación del  SICI-C-09-01 “Cronograma de Actividades-General”</span>
+                <a href="./2026-03-23_COCODI_9_SICI-C-09-01%20Cronograma%20de%20Actividades-General-2026.xlsx" class="attachment-btn">📎 Abrir Cronograma (Excel)</a>
             </div>
-
             <div class="card">
-                <span class="card-id">#8nj8z72e</span>
-                <span class="card-title card-title-highlight">Informe Anual Ética 2025</span>
-                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe PDF</a>
+                <span class="card-id">#ptci08</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-04: Aprobación del SICI-PTCI-08 “Programa de Trabajo de Control Interno”</span>
+                <a href="./2026-03-23_COCODI_8_SICI-PTCI-08%20Programa%20de%20Trabajo%20de%20Control%20Interno%202026.xlsx" class="attachment-btn">📎 Abrir Programa (Excel)</a>
             </div>
-
             <div class="card">
-                <span class="card-id">#a0wvqsr5</span>
-                <span class="card-title card-title-highlight">Código de Conducta (Gaceta)</span>
-                <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" class="attachment-btn">📎 Ver en Gaceta</a>
+                <span class="card-id">#ac-05</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-06: Presentación del Plan de Trabajo de la Enlace de Ética 2026</span>
+                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe Final</a>
+                <div class="card">
+                <span class="card-id">#ac-06</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-05: Presentación del Informe Anual Ética 2025</span>
+                <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe Final</a>
+            </div>
+            <div class="card">
+                <span class="card-id">#ac-07</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-07: Actualización del Código de Conducta</span>
+                <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" class="attachment-btn">📎 Ver en Gaceta Oficial</a>
             </div>
         </div>
     </div>
 
     <div class="column">
-        <div class="column-header">1RA SESIÓN ORDINARIA</div>
+        <div class="column-header">SEGUIMIENTO DE ACUERDOS</div>
+        <div class="cards-container">
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-01: Aprobación del Orden del Día</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-02: Modificación del calendario de Sesiones 2026</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-03: Aprobación del Cronograma SICI-C-09-01</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-04: Presentación del Programa SICI-PTCI-08</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-05: Presentación del Informe Anual Ética 2025</span></div>
+            <div class="card">
+                <span class="card-id">#ac-06</span>
+                <span class="card-title">ACUERDO COCODI-IPE-2026-06: Presentación del Plan de Trabajo de la Enlace de Ética 2026</span>
+                <a href="./2026-04-09_COCODI_Punto%20VIII%20integrar%20en%20Acta%20Punto%20PAT2026.doc" class="attachment-btn">📎 Punto VIII Acta</a>
+            </div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-07: Actualización del Código de Conducta</span></div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">SESIONES Y ANEXOS</div>
         <div class="cards-container">
             <div class="card">
-                <span class="card-title">Guion de Sesión</span>
-                <a href="./2026-04-06_COCODI_GUION%20PRIMERA%20SESI%C3%93N%20ORDINARIA%20COCODI%202026.docx" class="attachment-btn">📎 Abrir Guion</a>
+                <span class="card-id">#1ra-ord</span>
+                <span class="card-title card-title-gold">PRIMERA SESIÓN ORDINARIA DEL COCODI-IPE (24/Mar/2026)</span>
+                <a href="./2026-04-06_COCODI_GUION%20PRIMERA%20SESI%C3%93N%20ORDINARIA%20COCODI%202026.docx" class="attachment-btn">📎 Abrir Guion de Sesión</a>
+                <a href="./2026-04-08_COCODI_MEMO%20PROYECTO%20DE%20ACTA%20PRIMERA%20SESI%C3%93N%202026.docx" class="attachment-btn">📎 Memo Proyecto Acta</a>
             </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">CALENDARIO SESIONES 2026</div>
+        <div class="cards-container">
+            <div class="card"><span class="card-title card-title-gold">1ra Ordinaria: 24 de Marzo</span></div>
+            <div class="card"><span class="card-title">2da Ordinaria: 24 de Junio</span></div>
+            <div class="card"><span class="card-title">3ra Ordinaria: 23 de Septiembre</span></div>
+            <div class="card"><span class="card-title">4ta Ordinaria: 11 de Noviembre</span></div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">Reuniones PTCI</div>
+        <div class="cards-container">
             <div class="card">
-                <span class="card-title">Carta Compromiso DGGP</span>
-                <a href="./2026-03-03_COCODI_Carta%20Compromiso%202026_DGGP.docx" class="attachment-btn">📎 Abrir Carta</a>
+                <span class="card-title">Reunion de trabajo para la actualización del Código de Conducta</span>
+                <a href="./2026-03-10_COCODI_C%C3%93DIGO%20DE%20CONDUCTA%20IPE%20PARA%20GACETA.docx" class="attachment-btn">📎 Proyecto Código Word</a>
+            </div>
+            <div class="card"><span class="card-title">Capacitación en materia de Ética y Conducta</span></div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="column-header">NORMATIVIDAD Y APOYO</div>
+        <div class="cards-container">
+            <div class="card">
+                <span class="card-title">Proyectos de Código</span>
             </div>
         </div>
     </div>
