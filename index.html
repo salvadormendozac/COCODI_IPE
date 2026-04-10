@@ -283,5 +283,42 @@
     </div>
 
 </div> 
+<div id="miModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarReporte()">&times;</span>
+        <h2 style="color: var(--color-dorado); border-bottom: 1px solid var(--color-guinda); padding-bottom: 10px;">📊 REPORTE EJECUTIVO SICI 2026</h2>
+        <div id="datos-reporte" style="line-height: 1.8; margin-top: 20px; font-size: 1rem;">
+            </div>
+        <button onclick="window.print()" style="margin-top:20px; padding:10px; cursor:pointer;">🖨️ Imprimir / Guardar PDF</button>
+    </div>
+</div>
+
+<script>
+    function abrirReporte() {
+        const totalMeta = 16;
+        const cumplidos = document.querySelectorAll('#col-completado .card').length;
+        const proceso = document.querySelectorAll('#col-proceso .card').length;
+        const pendientes = document.querySelectorAll('#col-pendientes .card').length;
+        const porcentaje = ((cumplidos / totalMeta) * 100).toFixed(1);
+
+        const contenido = `
+            <p><b>Estatus de Formatos SICI:</b></p>
+            <ul>
+                <li>✅ <b>Cumplidos:</b> ${cumplidos} de ${totalMeta} (${porcentaje}%)</li>
+                <li>⏳ <b>En Proceso:</b> ${proceso}</li>
+                <li>❌ <b>Pendientes:</b> ${pendientes}</li>
+            </ul>
+            <p><b>Detalle de Cumplimiento:</b> Se ha concluido satisfactoriamente el Acta de Instalación (#13), el Cronograma (#09) y el Programa de Trabajo (#08).</p>
+            <p><b>Próximo Hito:</b> Concluir firmas de Actas de Sesiones (#14) y Reporte de Ética.</p>
+        `;
+        document.getElementById('datos-reporte').innerHTML = contenido;
+        document.getElementById('miModal').style.display = "block";
+    }
+
+    function cerrarReporte() {
+        document.getElementById('miModal').style.display = "none";
+    }
+</script>
+
 </body>
 </html>
