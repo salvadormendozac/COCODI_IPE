@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,56 +6,50 @@ HTML
     <title>Tablero SICI IPE 2026</title>
     <style>
         :root {
-            /* CAMBIO: Fondo Base Gris Muy Atenuado (Escala Institucional) */
-            --bg-base: #f4f4f4;
+            /* Fondo Base Gris Atenuado - Domina la pantalla */
+            --bg-base: #f0f2f5; 
             
-            /* Fondos de Columnas y Tarjetas (se mantienen oscuros para contraste) */
+            /* Fondos Oscuros - Reservados para resaltar la información importante */
             --bg-column: #161b22;
             --bg-card: #21262d;
             
             /* Colores Institucionales Veracruz */
             --color-guinda: #7A1737;
             --color-dorado: #B28854;
-            --color-gris: #696968;
-            
-            /* Textos y Bordes */
-            --text-main: #c9d1d9;
-            --text-secondary: #8b949e;
-            --text-header: #ffffff; /* Texto blanco sobre guinda */
-            --border: #30363d;
+            --color-gris-claro: #c9d1d9;
+            --color-gris-muted: #8b949e;
+            --color-border: #30363d;
+            --color-texto-oscuro: #333333;
         }
 
         body { 
             font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             background: var(--bg-base); 
-            color: var(--text-main); 
+            color: var(--color-texto-oscuro); 
             margin: 0; 
             padding: 20px; 
             line-height: 1.4;
         }
 
-        /* HEADER PRINCIPAL */
+        /* HEADER INTEGRADO AL FONDO GRIS */
         .header { 
             border-bottom: 3px solid var(--color-guinda); 
-            padding-bottom: 15px; 
+            padding: 20px;
             margin-bottom: 25px; 
             text-align: center; 
-            background-color: var(--bg-column); /* Fondo oscuro para el header */
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: var(--bg-base);
         }
         .header h1 { 
             margin: 0; 
-            font-size: 1.6rem; 
-            color: var(--text-header); 
+            font-size: 1.65rem; 
+            color: var(--color-texto-oscuro); 
             text-transform: uppercase; 
             letter-spacing: 1px; 
         }
         .header span { 
-            color: var(--color-dorado); 
+            color: var(--color-guinda); 
             font-size: 0.9rem; 
-            font-weight: 600; 
+            font-weight: 700; 
             display: block;
             margin-top: 5px;
         }
@@ -67,27 +60,27 @@ HTML
             gap: 15px; 
             overflow-x: auto; 
             align-items: flex-start; 
-            padding-bottom: 30px; 
+            padding: 10px; 
         }
         
-        /* COLUMNAS */
+        /* COLUMNAS OSCURAS PARA RESALTAR CONTENIDO */
         .column { 
             background: var(--bg-column); 
-            border: 1px solid var(--border); 
+            border: 1px solid rgba(0,0,0,0.1); 
             border-radius: 8px; 
             min-width: 320px; 
             width: 320px; 
             display: flex; 
             flex-direction: column; 
             max-height: 85vh; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
-            flex-shrink: 0; /* Evita que se amontonen */
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); 
+            flex-shrink: 0; 
         }
         .column-header { 
             padding: 12px; 
             font-weight: bold; 
             font-size: 0.8rem; 
-            color: var(--text-header); 
+            color: #ffffff; 
             background: var(--color-guinda); 
             border-radius: 8px 8px 0 0; 
             text-transform: uppercase; 
@@ -95,51 +88,51 @@ HTML
             text-align: center; 
         }
         
-        /* TARJETAS */
+        /* TARJETAS OSCURAS */
         .cards-container { padding: 12px; overflow-y: auto; }
         .card { 
             background: var(--bg-card); 
-            border: 1px solid var(--border); 
+            border: 1px solid var(--color-border); 
             border-radius: 6px; 
             padding: 14px; 
             margin-bottom: 12px; 
-            transition: 0.2s; 
+            transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
             border-left: 4px solid transparent; 
         }
         .card:hover { 
             border-color: var(--color-dorado); 
             border-left-color: var(--color-dorado); 
-            transform: translateX(5px); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+            transform: translateY(-4px); 
+            box-shadow: 0 12px 20px rgba(0,0,0,0.4); 
         }
         .card-id { 
-            color: var(--text-secondary); 
+            color: var(--color-gris-muted); 
             font-size: 0.7rem; 
             font-family: ui-monospace, monospace; 
             display: block; 
             margin-bottom: 6px; 
-            opacity: 0.7; 
+            opacity: 0.8; 
         }
         .card-title { 
             font-size: 0.85rem; 
             font-weight: 600; 
             line-height: 1.4; 
             display: block; 
-            color: var(--text-main); 
+            color: var(--color-gris-claro); 
         }
         .card-title-gold { color: var(--color-dorado); }
         
-        /* BOTONES DE ADJUNTOS GUINDA */
+        /* BOTONES DE ADJUNTOS */
         .attachment-btn { 
             display: flex; 
             align-items: center; 
             gap: 8px; 
             margin-top: 10px; 
             padding: 8px 12px; 
-            background: rgba(122, 23, 55, 0.15); 
+            background: rgba(122, 23, 55, 0.2); 
             border: 1px solid var(--color-guinda); 
             border-radius: 4px; 
-            color: #fff; 
+            color: #ffffff; 
             text-decoration: none; 
             font-size: 0.7rem; 
             font-weight: 600; 
@@ -151,7 +144,7 @@ HTML
             box-shadow: 0 0 10px rgba(122, 23, 55, 0.5); 
         }
 
-        /* ETIQUETAS DE ESTADO */
+        /* ETIQUETAS */
         .tag { 
             font-size: 0.6rem; 
             padding: 3px 8px; 
@@ -162,11 +155,12 @@ HTML
             text-transform: uppercase; 
         }
         .tag-process { background: var(--color-dorado); color: #000; }
-        .tag-done { background: var(--color-gris); color: #fff; }
+        .tag-done { background: #444; color: #fff; }
 
-        /* SCROLLBAR */
+        /* SCROLLBAR MODERNA */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #bbb; }
     </style>
 </head>
 <body>
@@ -202,7 +196,7 @@ HTML
             <div class="card">
                 <span class="card-id">#sco14</span>
                 <span class="card-title">SICI-SCO-14 “Acta de sesiones del COCODI”</span>
-                <span class="tag tag-process">Estatus: En proceso de firmas</span>
+                <span class="tag tag-process">En proceso de firmas</span>
                 <a href="./2026-04-08_COCODI_Acta_COCODI_20260408_1227.docx" class="attachment-btn">📎 Proyecto de Acta (Reciente)</a>
             </div>
         </div>
@@ -213,69 +207,47 @@ HTML
         <div class="cards-container">
             <div class="card">
                 <span class="card-id">#ico13</span>
-                <span class="card-title card-title-gold">SICI-ICO-13 “Acta de instalación del COCODI”</span>
+                <span class="card-title">SICI-ICO-13 “Acta de instalación del COCODI”</span>
                 <span class="tag tag-done">Concluido</span>
             </div>
             <div class="card">
                 <span class="card-id">#c0901</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-03: SICI-C-09-01 “Cronograma de Actividades-General”</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-03: Aprobación del Cronograma de Actividades “SICI-C-09-01”</span>
                 <a href="./2026-03-23_COCODI_9_SICI-C-09-01%20Cronograma%20de%20Actividades-General-2026.xlsx" class="attachment-btn">📎 Abrir Cronograma (Excel)</a>
             </div>
             <div class="card">
                 <span class="card-id">#ptci08</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-04: SICI-PTCI-08 “Programa de Trabajo de Control Interno”</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-04: Aprobación del Programa de Trabajo de Control Interno “SICI-PTCI-08”</span>
                 <a href="./2026-03-23_COCODI_8_SICI-PTCI-08%20Programa%20de%20Trabajo%20de%20Control%20Interno%202026.xlsx" class="attachment-btn">📎 Abrir Programa (Excel)</a>
             </div>
             <div class="card">
-                <span class="card-id">#ac-06</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-06: Plan de Trabajo Enlace de Ética 2026</span>
+                <span class="card-id">#ac-05</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-05: Presentación del Informe Anual 2025 en Materia de Ética</span>
                 <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe Final</a>
             </div>
             <div class="card">
-                <span class="card-id">#ac-05</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-05: Informe Anual Ética 2025</span>
+                <span class="card-id">#ac-06</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-06: Presentación del Programa Anual de Trabajo en Materia de Ética</span>
                 <a href="./2026-04-09_COCODI_InformeAnual%20Etica2025%20IPE.pdf" class="attachment-btn">📎 Abrir Informe Final</a>
             </div>
             <div class="card">
                 <span class="card-id">#ac-07</span>
-                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-07: Actualización del Código de Conducta</span>
+                <span class="card-title card-title-gold">ACUERDO COCODI-IPE-2026-07: Informe de Actualización del Código de Conducta</span>
                 <a href="./2026-04-09_COCODI_nuevo_codigo_de_conducta_del_ipe_gaceta_oficial.pdf" class="attachment-btn">📎 Ver en Gaceta Oficial</a>
             </div>
         </div>
     </div>
 
-  <div class="column">
+    <div class="column">
         <div class="column-header">SEGUIMIENTO DE ACUERDOS</div>
         <div class="cards-container">
-            <div class="card">
-                <span class="card-title">ACUERDO COCODI-IPE-2026-01: Aprobación del Orden del Día</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
-            <div class="card">
-                <span class="card-title">ACUERDO COCODI-IPE-2026-02: Modificación del calendario de Sesiones 2026</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
-            <div class="card">
-                <span class="card-title">ACUERDO COCODI-IPE-2026-03: Aprobación del Cronograma SICI-C-09-01</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
-            <div class="card">
-                <span class="card-title">ACUERDO COCODI-IPE-2026-04: Presentación del Programa SICI-PTCI-08</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
-            <div class="card">
-                <span class="card-title">ACUERDO COCODI-IPE-2026-05: Presentación del Informe Anual Ética 2025</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
-            <div class="card">
-                <span class="card-id">#ac-06-seg</span>
-                <span class="card-title">ACUERDO COCODI-IPE-2026-06: Plan de Trabajo Enlace de Ética 2026</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
-            <div class="card">
-                <span class="card-title">ACUERDO COCODI-IPE-2026-07: Actualización del Código de Conducta</span>
-                <span class="tag tag-done">Concluido</span>
-            </div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-01: Aprobación Orden del Día</span><span class="tag tag-done">Concluido</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-02: Modificación del Calendario Sesiones</span><span class="tag tag-done">Concluido</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-03: Aprobación del Cronograma de Actividades (SICI-C-09-01)</span><span class="tag tag-done">Concluido</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-04: Aprobación del Programa de Trabajo de Control Interno (SICI-PTCI-08)</span><span class="tag tag-done">Concluido</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-05: Presentación del Informe Anual 2025 en Materia de Ética</span><span class="tag tag-done">Concluido</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-06: Presentación del Programa Anual de Trabajo en Materia de Ética</span><span class="tag tag-done">Concluido</span></div>
+            <div class="card"><span class="card-title">ACUERDO COCODI-IPE-2026-07: Informe de Actualización del Código de Conducta</span><span class="tag tag-done">Concluido</span></div>
         </div>
     </div>
 
@@ -285,14 +257,14 @@ HTML
             <div class="card">
                 <span class="card-id">#1ra-ord</span>
                 <span class="card-title card-title-gold">PRIMERA SESIÓN ORDINARIA (24/Mar/2026)</span>
-                <a href="./2026-04-06_COCODI_GUION%20PRIMERA%20SESI%C3%93N%20ORDINARIA%20COCODI%202026.docx" class="attachment-btn">📎 Abrir Guion de Sesión</a>
+                <a href="./2026-04-06_COCODI_GUION%20PRIMERA%20SESI%C3%93N%20ORDINARIA%20COCODI%202026.docx" class="attachment-btn">📎 Guion de Sesión</a>
                 <a href="./2026-04-08_COCODI_MEMO%20PROYECTO%20DE%20ACTA%20PRIMERA%20SESI%C3%93N%202026.docx" class="attachment-btn">📎 Memo Proyecto Acta</a>
             </div>
         </div>
     </div>
 
     <div class="column">
-        <div class="column-header">CALENDARIO SESIONES 2026</div>
+        <div class="column-header">CALENDARIO 2026</div>
         <div class="cards-container">
             <div class="card"><span class="card-title card-title-gold">1ra Ordinaria: 24 de Marzo</span></div>
             <div class="card"><span class="card-title card-title-gold">2da Ordinaria: 24 de Junio</span></div>
@@ -302,26 +274,26 @@ HTML
     </div>
 
     <div class="column">
-        <div class="column-header">Reuniones PTCI</div>
+        <div class="column-header">REUNIONES PTCI</div>
         <div class="cards-container">
             <div class="card">
-                <span class="card-id">#reunion-cod</span>
-                <span class="card-title">Reunion de trabajo: Actualización Código de Conducta</span>
+                <span class="card-title">Actualización Código de Conducta</span>
                 <a href="./2026-03-10_COCODI_C%C3%93DIGO%20DE%20CONDUCTA%20IPE%20PARA%20GACETA.docx" class="attachment-btn">📎 Proyecto Código Word</a>
             </div>
-            <div class="card"><span class="card-title">Capacitación en materia de Ética y Conducta</span></div>
+            <div class="card"><span class="card-title">Capacitación Ética y Conducta</span></div>
         </div>
     </div>
 
     <div class="column">
-        <div class="column-header">NORMATIVIDAD Y APOYO</div>
+        <div class="column-header">NORMATIVIDAD</div>
         <div class="cards-container">
             <div class="card">
                 <span class="card-title">Proyectos de Código</span>
-                <p style="font-size: 0.75rem; color: var(--text-secondary);">Consulta de versiones preliminares y bases normativas.</p>
+                <p style="font-size: 0.75rem; color: var(--color-gris-muted);">Versiones preliminares y bases normativas.</p>
             </div>
         </div>
     </div>
 
-</div> </body>
+</div> 
+</body>
 </html>
